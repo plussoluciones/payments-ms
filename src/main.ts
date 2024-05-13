@@ -16,12 +16,18 @@ async function bootstrap() {
     }),
   );
 
-  app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.NATS,
-    options: {
-      servers: envs.natsServers,
+  app.connectMicroservice<MicroserviceOptions>(
+    {
+      transport: Transport.NATS,
+      options: {
+        servers: envs.natsServers,
+      },
     },
-  });
+    {
+      //para heredar las validaciones de los dtos en el NAT
+      inheritAppConfig: true,
+    },
+  );
 
   await app.startAllMicroservices();
 
