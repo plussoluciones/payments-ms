@@ -23,6 +23,8 @@ async function bootstrap() {
     },
   });
 
+  await app.startAllMicroservices();
+
   await app.listen(envs.port);
 
   logger.log(`Payments Microservice running on port ${envs.port}`);
